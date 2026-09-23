@@ -13,7 +13,7 @@ const DataPromise = async () => {
 
 const Fitness = async () => {
   const dataArray: DataType[] = await DataPromise();
-  console.log(dataArray.length);
+
   return (
     <div className="grid md:grid-cols-2 lg:grid-cols-3 my-8 items-center justify-center gap-8 container mx-auto">
       {dataArray.map((data) => (

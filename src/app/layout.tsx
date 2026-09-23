@@ -29,7 +29,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full flex flex-col">
         <Navbar />
         <div>{children}</div>
-        <div className="mb-16 h-px bg-white/10" />
+        <div className="mb-16 mt-8 h-px bg-white/10" />
         <Footer/>
       </body>
     </html>

@@ -8,7 +8,7 @@ import { IoTimeOutline } from "react-icons/io5";
 const DataCard = ({ data }: { data: DataType }) => {
   return (
     <div className="group m-2 overflow-hidden rounded-3xl bg-black text-white">
-      <Link href={``}>
+      <Link href={`/${data.id}`}>
         {/* Image */}
         <div className="relative overflow-hidden">
           <Image
@@ -16,7 +16,7 @@ const DataCard = ({ data }: { data: DataType }) => {
             width={500}
             height={400}
             alt={data.description}
-            className="h-94 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            className="h-104 w-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
         </div>
 

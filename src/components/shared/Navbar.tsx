@@ -9,7 +9,7 @@ const Navbar = () => {
         <Link href={"/"}>Workouts</Link>
       </li>
       <li>
-        <Link href={"/dawd"}>My Plan</Link>
+        <Link href={"/Plan"}>My Plan</Link>
       </li>
     </>
   );
@@ -53,13 +53,13 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{link}</ul>
         </div>
         <div className="navbar-end gap-2">
-          <Link href={""} className="flex justify-center items-center">
+          <Link href={"/Plan"} className="flex justify-center items-center">
             Plan&nbsp;
             <span className="w-6 h-6 bg-[#C2F800] rounded-full flex items-center justify-center ">
               0
             </span>
           </Link>
-          <Link href={""} className="flex justify-center items-center">
+          <Link href={"/Plan"} className="flex justify-center items-center">
             Saved&nbsp;
             <span className="w-5 h-5 outline-1 rounded-full flex items-center justify-center">
               0
