@@ -1,8 +1,8 @@
+import PlanButton from "@/components/fitdetails/PlanButton";
+import SaveButton from "@/components/fitdetails/SaveButton";
 import { DataType } from "@/types/DataType";
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
-import { FaRegBookmark, FaRegCalendarAlt } from "react-icons/fa";
 
 const DataPromise = async () => {
   try {
@@ -25,7 +25,6 @@ const WorkoutDetail = async ({
     (data: DataType) => Number(fitId) === data.id,
   ) as DataType;
 
-  console.log(data);
   return (
     <div className="container px-4 md:px-8 py-10 justify-between mx-auto flex flex-col lg:flex-row">
       <div className="flex flex-row items-center mx-auto w-auto max-w-5xl">
@@ -54,59 +53,59 @@ const WorkoutDetail = async ({
             </span>
           ))}
         </div>
-        <div className="w-full overflow-hidden rounded-2xl border border-slate-800 bg-[#121621] p-2 shadow-xl">
+        <div className="rounded-2xl border border-slate-800 bg-[#121621] p-2 shadow-xl">
           <table className="w-full border-collapse">
-            <tbody className="divide-y divide-slate-800/60">
-              <tr className="transition-colors hover:bg-slate-800/20">
-                <td className="px-4 py-3.5 text-left text-xs font-bold tracking-wider text-slate-400 uppercase">
+            <tbody className="divide-y divide-slate-800">
+              <tr>
+                <td className="px-4 py-3.5 text-left text-xs font-bold text-slate-400">
                   EQUIPMENT
                 </td>
                 <td className="px-4 py-3.5 text-right text-sm font-semibold text-slate-100">
                   {data.equipment}
                 </td>
               </tr>
-              <tr className="transition-colors hover:bg-slate-800/20">
-                <td className="px-4 py-3.5 text-left text-xs font-bold tracking-wider text-slate-400 uppercase">
+              <tr>
+                <td className="px-4 py-3.5 text-left text-xs font-bold text-slate-400">
                   DIFFICULTY
                 </td>
                 <td className="px-4 py-3.5 text-right text-sm font-semibold text-slate-100">
                   {data.difficulty}
                 </td>
               </tr>
-              <tr className="transition-colors hover:bg-slate-800/20">
-                <td className="px-4 py-3.5 text-left text-xs font-bold tracking-wider text-slate-400 uppercase">
+              <tr>
+                <td className="px-4 py-3.5 text-left text-xs font-bold text-slate-400">
                   SETS
                 </td>
                 <td className="px-4 py-3.5 text-right text-sm font-semibold text-slate-100">
                   {data.sets}
                 </td>
               </tr>
-              <tr className="transition-colors hover:bg-slate-800/20">
-                <td className="px-4 py-3.5 text-left text-xs font-bold tracking-wider text-slate-400 uppercase">
+              <tr>
+                <td className="px-4 py-3.5 text-left text-xs font-bold text-slate-400">
                   REPS
                 </td>
                 <td className="px-4 py-3.5 text-right text-sm font-semibold text-slate-100">
                   {data.reps}
                 </td>
               </tr>
-              <tr className="transition-colors hover:bg-slate-800/20">
-                <td className="px-4 py-3.5 text-left text-xs font-bold tracking-wider text-slate-400 uppercase">
+              <tr>
+                <td className="px-4 py-3.5 text-left text-xs font-bold text-slate-400">
                   DURATION
                 </td>
                 <td className="px-4 py-3.5 text-right text-sm font-semibold text-slate-100">
                   {data.duration}
                 </td>
               </tr>
-              <tr className="transition-colors hover:bg-slate-800/20">
-                <td className="px-4 py-3.5 text-left text-xs font-bold tracking-wider text-slate-400 uppercase">
+              <tr>
+                <td className="px-4 py-3.5 text-left text-xs font-bold text-slate-400">
                   CALORIES
                 </td>
                 <td className="px-4 py-3.5 text-right text-sm font-semibold text-slate-100">
                   {data.caloriesBurned}
                 </td>
               </tr>
-              <tr className="transition-colors hover:bg-slate-800/20">
-                <td className="px-4 py-3.5 text-left text-xs font-bold tracking-wider text-slate-400 uppercase">
+              <tr>
+                <td className="px-4 py-3.5 text-left text-xs font-bold text-slate-400">
                   RATING
                 </td>
                 <td className="px-4 py-3.5 text-right text-sm font-semibold text-slate-100">
@@ -125,18 +124,8 @@ const WorkoutDetail = async ({
           </ol>
         </div>
         <div className="flex flex-col lg:flex-row gap-4 items-center lg:items-start">
-          <Link href={""}>
-            <button className="btn bg-[#C2F800] text-black rounded-xl shadow shadow-black">
-              <FaRegCalendarAlt />
-              Add to today&apos;s plan
-            </button>
-          </Link>
-          <Link href={""}>
-            <button className="btn text-white rounded-xl shadow shadow-white">
-              <FaRegBookmark />
-              Save for later
-            </button>
-          </Link>
+          <PlanButton data={data} />
+          <SaveButton data={data} />
         </div>
       </div>
     </div>

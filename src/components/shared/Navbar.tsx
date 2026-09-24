@@ -1,19 +1,11 @@
 import Logo from "@/assets/logo.png";
 import Image from "next/image";
 import Link from "next/link";
+import ShowPlan from "./ShowPlan";
+import ShowSave from "./ShowSave";
+import NavLinks from "./NavLinks";
 
 const Navbar = () => {
-  const link = (
-    <>
-      <li>
-        <Link href={"/"}>Workouts</Link>
-      </li>
-      <li>
-        <Link href={"/Plan"}>My Plan</Link>
-      </li>
-    </>
-  );
-
   return (
     <div className="sticky top-0 z-50 bg-black">
       <div className="navbar mx-auto container">
@@ -39,9 +31,9 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={-1}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 space-y-1 shadow"
             >
-              {link}
+              <NavLinks />
             </ul>
           </div>
           <Link href={`/`} className="flex gap-2 font-bold btn-ghost text-xl">
@@ -50,21 +42,13 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">{link}</ul>
+          <ul className="gap-2 menu menu-horizontal px-1">
+            <NavLinks />
+          </ul>
         </div>
         <div className="navbar-end gap-2">
-          <Link href={"/Plan"} className="flex justify-center items-center">
-            Plan&nbsp;
-            <span className="w-6 h-6 bg-[#C2F800] rounded-full flex items-center justify-center ">
-              0
-            </span>
-          </Link>
-          <Link href={"/Plan"} className="flex justify-center items-center">
-            Saved&nbsp;
-            <span className="w-5 h-5 outline-1 rounded-full flex items-center justify-center">
-              0
-            </span>
-          </Link>
+          <ShowPlan />
+          <ShowSave />
         </div>
       </div>
     </div>

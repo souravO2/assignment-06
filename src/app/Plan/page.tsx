@@ -1,9 +1,82 @@
-import React from 'react';
+"use client";
+
+import EmptyData from "@/components/planPage/EmptyData";
+import { FitContext } from "@/context/FitContext";
+import React, { useContext, useState } from "react";
+import PlanDataPage from "@/components/planPage/PlanDataPage";
+import SavedDataPage from "@/components/planPage/SavedDataPage";
 
 const Plan = () => {
+  const { plan, save } = useContext(FitContext);
+
+  const [activeTab, setActiveTab] = useState<"plan" | "saved">("plan");
+
+  const currentData = activeTab === "plan" ? plan : save;
+
   return (
-    <div>
-      
+    <div className="container mx-auto my-8">
+      <div className=" text-center leading-10 md:text-left pl-4" id="jump">
+        <h1 className="font-bold text-4xl">THE PLAN</h1>
+        <p className="text-slate-400">
+          Cap of five lifts for today. Finish them load more.
+        </p>
+      </div>
+      <div className="flex flex-col md:flex-row bg-slate-900/20 max-[768px]:space-y-4 justify-around text-center border rounded-2xl border-slate-600 m-4 px-4 py-8">
+        <div className="leading-8">
+          <p className="text-gray-400">Excercises</p>
+          <h1 className="font-bold text-5xl text-[#C2F800]">
+            {currentData.length}
+          </h1>
+        </div>
+        <div className="divide-x md:divide-y max-[768px]:h-px md:w-px bg-slate-600"></div>
+        <div className="leading-8">
+          <p className="text-gray-400">Minutes</p>
+          <h1 className="font-bold text-5xl">
+            {currentData.reduce((sum, curr) => sum + curr.duration, 0)}
+          </h1>
+        </div>
+        <div className="divide-x md:divide-y max-[768px]:h-px md:w-px bg-slate-600"></div>
+        <div className="leading-8">
+          <p className="text-gray-400">Calories</p>
+          <h1 className="font-bold text-5xl">
+            {currentData.reduce((sum, curr) => sum + curr.caloriesBurned, 0)}
+          </h1>
+        </div>
+      </div>
+      {/* name of each tab group should be unique */}
+      <div className="tabs tabs-box rounded-xl m-2">
+        <input
+          type="radio"
+          name="my_tabs_6"
+          className="tab rounded-2xl"
+          aria-label="Today's Plan"
+          checked={activeTab === "plan"}
+          onChange={() => setActiveTab("plan")}
+        />
+        <div className="tab-content bg-base-100 border-base-300 p-6">
+          {plan.length === 0 ? (
+            <EmptyData />
+          ) : (
+            plan.map((data) => <PlanDataPage key={data.id} data={data} />)
+          )}
+        </div>
+        <input
+          type="radio"
+          name="my_tabs_6"
+          className="tab rounded-xl"
+          aria-label="Saved"
+          checked={activeTab === "saved"}
+          onChange={() => setActiveTab("saved")}
+        />
+
+        <div className="tab-content bg-base-100 border-base-300 p-6">
+          {save.length === 0 ? (
+            <EmptyData />
+          ) : (
+            save.map((data) => <SavedDataPage key={data.id} data={data} />)
+          )}
+        </div>
+      </div>
     </div>
   );
 };

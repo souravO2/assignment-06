@@ -1,6 +1,7 @@
 import React from "react";
 import Banner from "@/assets/banner.png";
 import Image from "next/image";
+import BrowseButton from "./BrowseButton";
 
 const Hero = () => {
   return (
@@ -18,9 +19,7 @@ const Hero = () => {
           lock it into today&apos;s plan, and watch the week&apos;s work add up.
         </p>
         <div className="flex flex-row justify-center lg:justify-start gap-4">
-          <button className="btn font-semibold bg-[#C2F800] text-black rounded-xl px-4 border-none shadow-none">
-            Browse Workouts
-          </button>
+          <BrowseButton/>
         </div>
       </div>
       <div className="flex w-full justify-center lg:w-1/2">
