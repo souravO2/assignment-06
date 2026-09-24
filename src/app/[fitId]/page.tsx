@@ -2,6 +2,7 @@ import PlanButton from "@/components/fitdetails/PlanButton";
 import SaveButton from "@/components/fitdetails/SaveButton";
 import { DataType } from "@/types/DataType";
 import Image from "next/image";
+import { notFound } from "next/navigation";
 import React from "react";
 
 const DataPromise = async () => {
@@ -19,11 +20,14 @@ const WorkoutDetail = async ({
   params: Promise<{ fitId: string }>;
 }) => {
   const { fitId } = await params;
-
   const dataArray = await DataPromise();
   const data = dataArray.find(
-    (data: DataType) => Number(fitId) === data.id,
+    (item: DataType) => item.id === Number(fitId),
   ) as DataType;
+
+  if (!data) {
+    notFound();
+  }
 
   return (
     <div className="container px-4 md:px-8 py-10 justify-between mx-auto flex flex-col lg:flex-row">
