@@ -6,18 +6,22 @@ import React, { useContext } from "react";
 import { FaFire, FaRegStar } from "react-icons/fa";
 import { ImCheckmark, ImCross } from "react-icons/im";
 import { IoTimeOutline } from "react-icons/io5";
+import { toast } from "sonner";
 
 const PlanDataPage = ({ data }: { data: DataType }) => {
   const { setPlan } = useContext(FitContext);
 
   const handleDeleteBtn = (item: DataType) => {
-    setPlan((data)=> data.filter((data)=> data.id !== item.id))
+    setPlan((data) => data.filter((data) => data.id !== item.id));
+    toast.success(`'${item.name}' has been deleted.`, {
+      className: "!bg-red-400 !border-none",
+    });
   };
-  
-  const handleMarkBtn = (item : DataType)=> {
-    setPlan((data)=> data.filter((data)=> data.id !== item.id))
-    alert("Finished")
-  }
+
+  const handleMarkBtn = (item: DataType) => {
+    setPlan((data) => data.filter((data) => data.id !== item.id));
+    toast.success(`'${item.name}' is done.`);
+  };
 
   return (
     <div className="my-4 flex flex-col overflow-hidden rounded-xl border border-slate-700 bg-slate-900/20 md:flex-row md:items-center md:justify-between">
@@ -72,12 +76,13 @@ const PlanDataPage = ({ data }: { data: DataType }) => {
           </button>
         </Link>
 
-          <button 
-          onClick={()=> handleMarkBtn(data)}
-          className="btn rounded-2xl bg-[#C2F800] font-normal text-black">
-            <ImCheckmark />
-            Mark as Done
-          </button>
+        <button
+          onClick={() => handleMarkBtn(data)}
+          className="btn rounded-2xl bg-[#C2F800] font-normal text-black"
+        >
+          <ImCheckmark />
+          Mark as Done
+        </button>
 
         <button
           onClick={() => handleDeleteBtn(data)}

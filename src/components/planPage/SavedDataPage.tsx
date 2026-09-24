@@ -6,11 +6,15 @@ import React, { useContext } from "react";
 import { FaFire, FaRegStar } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
 import { IoTimeOutline } from "react-icons/io5";
+import { toast } from "sonner";
 
 const SavedDataPage = ({ data }: { data: DataType }) => {
   const { setSave } = useContext(FitContext);
   const handleDeleteBtn = (item: DataType) => {
     setSave((data) => data.filter((data) => data.id !== item.id));
+    toast.success(`'${item.name}' has been deleted.`, {
+      className: "!bg-red-400 !border-none",
+    });
   };
 
   return (

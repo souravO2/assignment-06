@@ -49,7 +49,7 @@ const Plan = () => {
           type="radio"
           name="my_tabs_6"
           className="tab rounded-2xl"
-          aria-label="Today's Plan"
+          aria-label={`Today's Plan (${plan.length})`}
           checked={activeTab === "plan"}
           onChange={() => setActiveTab("plan")}
         />
@@ -64,7 +64,7 @@ const Plan = () => {
           type="radio"
           name="my_tabs_6"
           className="tab rounded-xl"
-          aria-label="Saved"
+          aria-label={`Saved (${save.length})`}
           checked={activeTab === "saved"}
           onChange={() => setActiveTab("saved")}
         />
