@@ -5,6 +5,7 @@ import { FitContext } from "@/context/FitContext";
 import React, { useContext, useState } from "react";
 import PlanDataPage from "@/components/planPage/PlanDataPage";
 import SavedDataPage from "@/components/planPage/SavedDataPage";
+import { DataType } from "@/types/DataType";
 
 const Plan = () => {
   const { plan, save } = useContext(FitContext);
@@ -12,6 +13,22 @@ const Plan = () => {
   const [activeTab, setActiveTab] = useState<"plan" | "saved">("plan");
 
   const currentData = activeTab === "plan" ? plan : save;
+
+  const [sort, setSort] = useState<"duration" | "calories" | "rating">(
+    "duration",
+  );
+  const sortFits = (currentData: DataType[]) => {
+    const sortedFit = [...currentData];
+    if (sort === "duration") {
+      sortedFit.sort((a, b) => b.duration - a.duration);
+    } else if (sort === "calories") {
+      sortedFit.sort((a, b) => b.caloriesBurned - a.caloriesBurned);
+    } else if (sort === "rating") {
+      sortedFit.sort((a, b) => b.rating - a.rating);
+    }
+    return sortedFit;
+  };
+  const sortCurrData = sortFits(currentData);
 
   return (
     <div className="container mx-auto my-8">
@@ -44,7 +61,7 @@ const Plan = () => {
         </div>
       </div>
       {/* name of each tab group should be unique */}
-      <div className="tabs tabs-box rounded-xl m-2">
+      <div className="tabs tabs-box rounded-xl m-2 flex">
         <input
           type="radio"
           name="my_tabs_6"
@@ -57,7 +74,9 @@ const Plan = () => {
           {plan.length === 0 ? (
             <EmptyData />
           ) : (
-            plan.map((data) => <PlanDataPage key={data.id} data={data} />)
+            sortCurrData.map((data) => (
+              <PlanDataPage key={data.id} data={data} />
+            ))
           )}
         </div>
         <input
@@ -73,8 +92,27 @@ const Plan = () => {
           {save.length === 0 ? (
             <EmptyData />
           ) : (
-            save.map((data) => <SavedDataPage key={data.id} data={data} />)
+            sortCurrData.map((data) => (
+              <SavedDataPage key={data.id} data={data} />
+            ))
           )}
+        </div>
+        <div className="ml-auto md:pr-2 flex item-center gap-2 whitespace-nowrap">
+          <span className="hidden text-xs font-medium text-slate-400 sm:text-sm md:inline-flex items-center">
+            Sort :
+          </span>
+          <select
+            value={sort}
+            onChange={(e) =>
+              setSort(e.target.value as "duration" | "calories" | "rating")
+            }
+            defaultValue={"duration"}
+            className="select"
+          >
+            <option value={"duration"}>Duration</option>
+            <option value={"calories"}>Calories</option>
+            <option value={"rating"}>Rating</option>
+          </select>
         </div>
       </div>
     </div>

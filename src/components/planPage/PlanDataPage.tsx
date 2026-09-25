@@ -25,7 +25,6 @@ const PlanDataPage = ({ data }: { data: DataType }) => {
 
   return (
     <div className="relative my-4 overflow-hidden rounded-3xl border border-slate-800 bg-slate-900/40 backdrop-blur-md shadow-xl transition-all duration-300 hover:border-slate-700/60 flex flex-col md:flex-row md:items-center md:justify-between">
-      
       {/* Floating Delete Button for Mobile (Top-Right of Image) */}
       <button
         onClick={() => handleDeleteBtn(data)}
@@ -80,7 +79,7 @@ const PlanDataPage = ({ data }: { data: DataType }) => {
             {/* Rating */}
             <div className="flex items-center gap-1.5 rounded-xl bg-slate-800/60 px-2.5 py-1.5 border border-slate-700/40 text-slate-200">
               <FaRegStar className="shrink-0 text-sm text-[#C2F800]" />
-              <span className="text-xs font-bold">4.8</span>
+              <span className="text-xs font-bold">{data.rating}</span>
             </div>
           </div>
         </div>
@@ -111,7 +110,6 @@ const PlanDataPage = ({ data }: { data: DataType }) => {
           <ImCross className="h-4 w-4" />
         </button>
       </div>
-
     </div>
   );
 };

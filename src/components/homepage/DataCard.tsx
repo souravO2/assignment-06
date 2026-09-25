@@ -64,7 +64,7 @@ const DataCard = ({ data }: { data: DataType }) => {
             {/* Rating */}
             <div className="flex flex-col items-center gap-1 px-2">
               <FaRegStar className="text-lg text-[#C2F800]" />
-              <span className="text-sm font-semibold">4.8</span>
+              <span className="text-sm font-semibold">{data.rating}</span>
             </div>
           </div>
         </div>
