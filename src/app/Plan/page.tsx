@@ -106,7 +106,6 @@ const Plan = () => {
             onChange={(e) =>
               setSort(e.target.value as "duration" | "calories" | "rating")
             }
-            defaultValue={"duration"}
             className="select"
           >
             <option value={"duration"}>Duration</option>

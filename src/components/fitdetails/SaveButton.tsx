@@ -25,7 +25,7 @@ const SaveButton = ({ data }: { data: DataType }) => {
   return (
     <button
       onClick={() => handleSaveButton(data)}
-      className="btn text-white rounded-xl shadow shadow-white"
+      className="btn text-white rounded-xl border border-slate-700"
     >
       <FaRegBookmark />
       Save for later
