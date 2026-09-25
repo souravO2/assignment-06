@@ -21,7 +21,7 @@ const PlanButton = ({ data }: { data: DataType }) => {
       className : "!bg-green-400 !border-none"
     })
   };
-  console.log(plan);
+  
   return (
     <button
       onClick={() => handlePlantButton(data)}

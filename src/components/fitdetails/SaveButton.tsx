@@ -21,7 +21,7 @@ const SaveButton = ({ data }: { data: DataType }) => {
       className: "!bg-green-400 !border-none",
     });
   };
-  console.log(save);
+  
   return (
     <button
       onClick={() => handleSaveButton(data)}
